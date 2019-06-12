@@ -7,6 +7,11 @@ After repeating this and bisecting through images since 01/01/2000, the bot will
 ## Building
 
 The bot is built in C# using .NET Core; it has been tested against .NET Core 2.2.
+Basic commands to quickly build and launch it:
+```
+dotnet build
+dotnet bin/Debug/netcoreapp2.2/Wildfires.dll <TELEGRAM_API_KEY> <NASA_API_KEY>
+```
 
 ## Usage
 
