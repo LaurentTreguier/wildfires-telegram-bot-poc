@@ -22,5 +22,4 @@ The commands are case insensitive and trimmed to be somewhat lenient.
 
 ## TODO
 
-- The bot currently sleeps for 3.5 weeks waiting for connections; an actual waiting system should be used for any real usage
 - Telegram has a nifty [reply keyboard markup](https://core.telegram.org/bots/api#replykeyboardmarkup) API, which would be very well suited for yes/no questions

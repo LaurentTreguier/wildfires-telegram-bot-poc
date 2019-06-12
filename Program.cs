@@ -50,8 +50,8 @@ namespace Wildfires
             bot = new TelegramBotClient(args[0]);
             bot.OnMessage += OnMessageAsync;
             bot.StartReceiving();
-            // TODO: provide a proper way to keep the bot alive
-            Thread.Sleep(int.MaxValue);
+            // TODO: provide an elegant way to keep the bot alive
+            Thread.Sleep(Timeout.Infinite);
         }
 
         /// Safely tries to retrieve a bisector associated with the chat, if any
