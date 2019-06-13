@@ -28,5 +28,5 @@ The commands are case insensitive and trimmed to be somewhat lenient.
 ## TODO
 
 - Allow changing the starting date and the location
-- Drop bisections after a certain amount of times without any response
+- Drop bisections after a certain amount of time without any response from a user
 - Telegram has a nifty [reply keyboard markup](https://core.telegram.org/bots/api#replykeyboardmarkup) API, which would be very well suited for yes/no questions
