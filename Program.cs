@@ -129,11 +129,21 @@ namespace Wildfires
         private static async Task ContinueBisectingAsync(ChatId chat)
         {
             var info = await bisectors[chat.Identifier].GetMiddleImageInfoAsync();
-            await bot.SendPhotoAsync(
-                chatId: chat,
-                photo: new InputOnlineFile(info.url),
-                caption: $"[{info.date}] - Do you see wildfire damages ?"
-            );
+
+            if (info == null)
+            {
+                await bot.SendTextMessageAsync(
+                    chatId: chat,
+                    text: "An error has occured; the bisection should be finished by now"
+                );
+            } else
+            {
+                await bot.SendPhotoAsync(
+                    chatId: chat,
+                    photo: new InputOnlineFile(info.url),
+                    caption: $"[{info.date}] - Do you see wildfire damages ?"
+                );
+            }
         }
     }
 
@@ -168,19 +178,25 @@ namespace Wildfires
                 Culprit = images[index].date;
             }
 
-            if (images.Length <= 1)
-            {
-                Completed = true;
-            }
-            else
+            if (images.Length >= 1)
             {
                 images = (fireSeen ? images.Take(index) : images.TakeLast(images.Length - index - 1)).ToArray();
+            }
+
+            if (images.Length == 0)
+            {
+                Completed = true;
             }
         }
 
         /// Retrieves information about the image in the middle of the image list
         public async Task<ImageInfo> GetMiddleImageInfoAsync()
         {
+            if (images.Length == 0)
+            {
+                return null;
+            }
+
             var index = GetMiddleIndex();
             var image = images[index];
             var date = DateTime.Parse(image.date);
