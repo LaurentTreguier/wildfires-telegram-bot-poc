@@ -93,7 +93,7 @@ namespace Wildfires
             {
                 await bot.SendTextMessageAsync(
                     chatId: e.Message.Chat,
-                    text: "Culprit: " + bisector.Culprit
+                    text: bisector.Culprit == null ? "No culprit found" : "Culprit: " + bisector.Culprit
                 );
                 bisectors.Remove(e.Message.Chat.Id);
             }
@@ -136,7 +136,8 @@ namespace Wildfires
                     chatId: chat,
                     text: "An error has occured; the bisection should be finished by now"
                 );
-            } else
+            }
+            else
             {
                 await bot.SendPhotoAsync(
                     chatId: chat,
